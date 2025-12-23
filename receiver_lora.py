@@ -3,15 +3,19 @@
 #FIXME: no se puede ejecutar esto con un virtual enviromente. Ver si hacer un docker o algo. 
 
 from sx1262 import SX1262
+import os
 import time
 import re
 import json 
 import struct
 import paho.mqtt.client as mqtt
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 MQTT_BROKER = "localhost"
-MQTT_PORT = 1883
-MQTT_TOPIC = "test/ejemplo/json"
+MQTT_PORT = int(os.getenv("MQTT_PORT"))
+MQTT_TOPIC = os.getenv("MQTT_TOPIC")
 
 # Crear cliente MQTT
 client = mqtt.Client()
